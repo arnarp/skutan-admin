@@ -1,0 +1,13 @@
+.LoadingPage {
+  height: 50vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.App-logo {
+  animation: Spin infinite 2s linear;
+  height: 80px;
+}
