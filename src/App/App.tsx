@@ -38,6 +38,7 @@ export class App extends React.Component<
     this.removeAuthStateChangeListener = firebaseAuth().onAuthStateChanged(
       user => {
         if (user) {
+          console.log(user)
           user.getIdToken().then(idToken => {
             const claims = JSON.parse(b64DecodeUnicode(idToken.split('.')[1]))
             this.setState(() => ({ claims }))

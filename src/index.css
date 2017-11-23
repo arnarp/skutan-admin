@@ -1,27 +1,70 @@
 body {
   margin: 0;
   padding: 0;
+}
+body * {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-}
-body * {
   box-sizing: border-box;
 }
 button {
   border: none;
   border-radius: 0;
   padding: 0;
+  cursor: pointer;
+  font-size: 16px;
+  background: transparent;
+  color: #2196f3;
+  line-height: 30px;
+}
+button:hover {
+  background: rgba(33, 150, 243, 0.12);
+}
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+table th {
+  font-weight: 500;
+  line-height: 30px;
+  text-align: left;
+  font-size: 16px;
+}
+table td {
+  line-height: 30px;
+  text-align: left;
+  font-size: 16px;
 }
 h1 {
   font-weight: 300;
+  font-size: 32px;
   margin: 12px 0;
+}
+h2 {
+  font-weight: 300;
+  font-size: 24px;
+  margin: 6px 0;
+}
+h3 {
+  font-weight: 300;
+  font-size: 20px;
+  margin: 6px 0;
+}
+span,
+p {
+  font-size: 16px;
 }
 
 .BlueBackground {
   background-color: #4054a5;
   color: white;
+}
+.Col {
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes Spin {

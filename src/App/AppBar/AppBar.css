@@ -1,7 +1,7 @@
 .AppBar {
   height: 48px;
   width: 100vw;
-  padding: 0 12px;
+  padding: 0 24px;
   position: fixed;
   top: 0;
   left: 0;
@@ -25,7 +25,7 @@
   background: transparent;
   height: 48px;
   width: 48px;
-  padding-right: 12px;
+  padding-left: 12px;
   display: flex;
   justify-content: flex-end;
 }
@@ -33,4 +33,39 @@
   height: 32px;
   width: 32px;
   border-radius: 17px;
+}
+.AppBarAccountPopover {
+  display: flex;
+  flex-direction: column;
+}
+.AppBarAccountPopover .Info {
+  padding: 12px;
+  display: flex;
+  flex-direction: row;
+  line-height: 24px;
+}
+.AppBarAccountPopover .Info > * + * {
+  margin-left: 12px;
+}
+.AppBarAccountPopover .Info img {
+  height: 96px;
+  width: 96px;
+  border-radius: 48px;
+}
+.AppBarAccountPopover .ActionFooter {
+  background: #f5f5f5;
+  border-top: 1px solid #ccc;
+  height: 51px;
+  width: 100%;
+  padding: 0 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.AppBarAccountPopover .ActionFooter button {
+  color: #666;
+  border: 1px solid #c6c6c6;
+  background: hsla(360, 100%, 100%, 0.1);
+  padding: 0 12px;
 }

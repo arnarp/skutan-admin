@@ -1,0 +1,22 @@
+table.UsersTable .NameTh {
+  width: 200px;
+}
+
+table.UsersTable .EmailTh {
+  width: 270px;
+}
+
+table.UsersTable thead th:nth-child(3) {
+  width: 20%;
+}
+table.UsersTable thead th:nth-child(3) {
+  width: 10%;
+}
+
+table.UsersTable td,
+table.UsersTable th {
+  padding: 0;
+}
+table.UsersTable td > svg {
+  height: 20px;
+}
