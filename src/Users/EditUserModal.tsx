@@ -4,6 +4,7 @@ import { Modal } from '../Components/Modal'
 import { UserRecord, UserClaims } from './Users'
 import { ModalControl } from '../Components/Modal/Modal'
 import { LoadingSpinner } from '../Components/LoadingSpinner/LoadingSpinner'
+import { isSame } from '../Utils/isSame'
 interface EditUserModalProps {
   user: Readonly<UserRecord>
 }
@@ -82,10 +83,7 @@ export class EditUserModal extends React.PureComponent<
             <button className="Button-default">Hætta við</button>
             <button
               className="Button-default"
-              disabled={
-                JSON.stringify(this.props.user.claims) ===
-                JSON.stringify(this.state.claims)
-              }
+              disabled={isSame(this.props.user.claims, this.state.claims)}
               onClick={this.onSave}
             >
               Vista

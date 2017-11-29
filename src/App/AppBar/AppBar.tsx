@@ -17,6 +17,7 @@ export class AppBar extends React.PureComponent<AppBarProps, {}> {
         <nav className="AppBarNav">
           <Link to="/">Heim</Link>
           <Link to="/users">Notendur</Link>
+          <Link to="/customers">Viðskiptavinir</Link>
         </nav>
         <Popover
           deltaY={-2}

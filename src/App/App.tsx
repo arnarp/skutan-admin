@@ -8,6 +8,7 @@ import { LoginPage } from './LoginPage'
 import { LoadingPage } from './LoadingPage'
 import { AppBar } from './AppBar'
 import './App.css'
+import { customerRoutes } from '../Routes/Customers/routes'
 
 interface Claims {
   isAdmin: string | undefined
@@ -38,7 +39,6 @@ export class App extends React.Component<
     this.removeAuthStateChangeListener = firebaseAuth().onAuthStateChanged(
       user => {
         if (user) {
-          console.log(user)
           user.getIdToken().then(idToken => {
             const claims = JSON.parse(b64DecodeUnicode(idToken.split('.')[1]))
             this.setState(() => ({ claims }))
@@ -54,7 +54,6 @@ export class App extends React.Component<
     this.removeAuthStateChangeListener()
   }
   render() {
-    console.log('App render', this.state)
     if (this.state.loading) {
       return <LoadingPage />
     } else if (this.state.user === undefined) {
@@ -74,6 +73,7 @@ export class App extends React.Component<
               <div>
                 <Route exact={true} path="/" component={Home} />
                 <Route path="/users" component={Users} />
+                {customerRoutes}
               </div>
             )}
           </main>
