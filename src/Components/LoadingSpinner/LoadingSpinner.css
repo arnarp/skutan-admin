@@ -1,0 +1,10 @@
+.LoadingSpinner {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.LoadingSpinner svg {
+  animation: Spin infinite 2s linear;
+  height: 80px;
+}

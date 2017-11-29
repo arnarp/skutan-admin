@@ -20,3 +20,17 @@ table.UsersTable th {
 table.UsersTable td > svg {
   height: 20px;
 }
+
+.EditUserModal {
+  min-width: 300px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+.EditUserModal .Content {
+  flex-grow: 1;
+  display: flex;
+}
+.EditUserModal .ActionRow {
+  justify-content: flex-end;
+}

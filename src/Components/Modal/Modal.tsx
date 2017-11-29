@@ -5,9 +5,13 @@ import * as uuid from 'uuid'
 import 'inert-polyfill'
 import './Modal.css'
 
+export interface ModalControl {
+  closeModal: () => void
+}
 interface ModalProps {
   button: JSX.Element
   title: string
+  provideControl: (ctrl: ModalControl | null) => void
 }
 
 interface ModalState {
@@ -28,6 +32,15 @@ export class Modal extends React.PureComponent<ModalProps, ModalState> {
     this.portalContainer = document.getElementById('modal-container')
     this.handleOpen = this.handleOpen.bind(this)
     this.handleClose = this.handleClose.bind(this)
+  }
+  componentDidMount() {
+    this.props.provideControl({
+      closeModal: () => this.handleClose(),
+    })
+  }
+
+  componentWillUnmount() {
+    this.props.provideControl(null)
   }
   handleOpen() {
     this.setState(

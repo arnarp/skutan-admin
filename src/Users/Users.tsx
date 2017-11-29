@@ -1,17 +1,18 @@
 import * as React from 'react'
 import * as firebase from 'firebase/app'
-import { Modal } from '../Components/Modal'
 import { AdminIcon } from './AdminIcon'
 import './Users.css'
+import { EditUserModal } from './EditUserModal'
 
-interface UserRecord {
+export interface UserRecord {
   uId: string
   displayName: string
   email: string
   photoURL: string
-  claims: {
-    isAdmin?: boolean
-  }
+  claims: UserClaims
+}
+export interface UserClaims {
+  isAdmin?: boolean
 }
 interface UserPageProps {}
 interface UserPageState {
@@ -62,37 +63,7 @@ export class Users extends React.Component<UserPageProps, UserPageState> {
                 <td>{u.email}</td>
                 <td>{u.claims.isAdmin && <AdminIcon />}</td>
                 <td>
-                  <Modal
-                    title="Breyta notanda"
-                    button={<button>Breyta</button>}
-                  >
-                    <div style={{ minWidth: '300px', minHeight: '300px' }}>
-                      <h3>{u.displayName}</h3>
-                      <label>
-                        Admin
-                        <input
-                          type="checkbox"
-                          checked={u.claims.isAdmin}
-                          onChange={() => {
-                            firebase
-                              .firestore()
-                              .collection('users')
-                              .doc(u.uId)
-                              .update({
-                                claims: {
-                                  ...u.claims,
-                                  isAdmin: !u.claims.isAdmin,
-                                },
-                              })
-                              .then(() => console.log('Claim updated'))
-                              .catch(error =>
-                                console.log('Claim update fail', error),
-                              )
-                          }}
-                        />
-                      </label>
-                    </div>
-                  </Modal>
+                  <EditUserModal user={u} />
                 </td>
               </tr>
             ))}
