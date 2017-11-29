@@ -5,6 +5,7 @@ import { UserRecord, UserClaims } from './Users'
 import { ModalControl } from '../Components/Modal/Modal'
 import { LoadingSpinner } from '../Components/LoadingSpinner/LoadingSpinner'
 import { isSame } from '../Utils/isSame'
+import { Button } from '../Components/Buttons/Button'
 interface EditUserModalProps {
   user: Readonly<UserRecord>
 }
@@ -80,14 +81,23 @@ export class EditUserModal extends React.PureComponent<
               this.state.savingError && <p>Villa kom upp við að vista</p>}
           </div>
           <div className="Row Spacing-md ActionRow">
-            <button className="Button-default">Hætta við</button>
-            <button
-              className="Button-default"
+            <Button
+              color="Default"
+              onClick={() => {
+                if (this.modal) {
+                  this.modal.closeModal()
+                }
+              }}
+            >
+              Hætta við
+            </Button>
+            <Button
+              color="Primary"
               disabled={isSame(this.props.user.claims, this.state.claims)}
               onClick={this.onSave}
             >
               Vista
-            </button>
+            </Button>
           </div>
         </div>
       </Modal>

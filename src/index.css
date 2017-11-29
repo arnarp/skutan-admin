@@ -66,21 +66,6 @@ p {
   display: flex;
   flex-direction: column;
 }
-.Row {
-  display: flex;
-  flex-direction: row;
-}
-.Row.Spacing-md > * + * {
-  margin-left: 12px;
-}
-.Button-default {
-  border: 1px solid hsla(0, 0%, 0%, 0.6);
-  padding: 6px 12px;
-  color: hsla(0, 0%, 0%, 0.8);
-}
-.Button-default:disabled {
-  color: hsla(0, 0%, 0%, 0.4);
-}
 
 @keyframes Spin {
   from {

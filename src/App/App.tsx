@@ -9,6 +9,7 @@ import { LoadingPage } from './LoadingPage'
 import { AppBar } from './AppBar'
 import './App.css'
 import { customerRoutes } from '../Routes/Customers/routes'
+import { componentsRoutes } from '../Components/routes'
 
 interface Claims {
   isAdmin: string | undefined
@@ -74,6 +75,7 @@ export class App extends React.Component<
                 <Route exact={true} path="/" component={Home} />
                 <Route path="/users" component={Users} />
                 {customerRoutes}
+                {componentsRoutes}
               </div>
             )}
           </main>

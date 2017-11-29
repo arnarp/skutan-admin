@@ -40,7 +40,7 @@
   opacity: 1;
 }
 .Modal > header {
-  padding: 0 6px;
+  padding: 0 12px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -52,5 +52,5 @@
   font-size: 16px;
 }
 .Modal > .ModalContent {
-  padding: 6px;
+  padding: 12px;
 }
