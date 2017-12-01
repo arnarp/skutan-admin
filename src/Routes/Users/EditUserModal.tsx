@@ -1,11 +1,12 @@
 import * as React from 'react'
 import * as firebase from 'firebase/app'
-import { Modal } from '../Components/Modal'
 import { UserRecord, UserClaims } from './Users'
-import { ModalControl } from '../Components/Modal/Modal'
-import { LoadingSpinner } from '../Components/LoadingSpinner/LoadingSpinner'
-import { isSame } from '../Utils/isSame'
-import { Button } from '../Components/Buttons/Button'
+import { ModalControl, Modal } from '../../Components/Modal/Modal'
+import { LoadingSpinner } from '../../Components/LoadingSpinner/index'
+import { Row } from '../../Components/Layout/Row'
+import { Button } from '../../Components/Buttons/Button'
+import { isSame } from '../../Utils/isSame'
+
 interface EditUserModalProps {
   user: Readonly<UserRecord>
 }
@@ -80,7 +81,7 @@ export class EditUserModal extends React.PureComponent<
             {!this.state.saving &&
               this.state.savingError && <p>Villa kom upp við að vista</p>}
           </div>
-          <div className="Row Spacing-md ActionRow">
+          <Row spacing="Medium" justifyContent="End">
             <Button
               color="Default"
               onClick={() => {
@@ -98,7 +99,7 @@ export class EditUserModal extends React.PureComponent<
             >
               Vista
             </Button>
-          </div>
+          </Row>
         </div>
       </Modal>
     )

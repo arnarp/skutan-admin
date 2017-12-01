@@ -1,0 +1,1 @@
+export { CustomersIndex } from './CustomersIndex'

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Route } from 'react-router-dom'
-import { Customers } from './Customers'
+import { CustomersIndex } from './CustomersIndex'
 
 export const customerRoutes = [
-  <Route key="/customers" path="/customers" component={Customers} />,
+  <Route key="/customers" path="/customers" component={CustomersIndex} />,
 ]

@@ -2,6 +2,15 @@
   display: flex;
   flex-direction: row;
 }
-.Row.Spacing-md > * + * {
+.Row.Spacing-Medium > * + * {
   margin-left: 12px;
+}
+.Row.JustifyContentStart {
+  justify-content: flex-start;
+}
+.Row.JustifyContentEnd {
+  justify-content: flex-end;
+}
+.Row.Wrap {
+  flex-wrap: wrap;
 }

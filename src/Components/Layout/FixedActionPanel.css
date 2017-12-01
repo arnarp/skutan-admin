@@ -1,0 +1,10 @@
+.FixedActionPanel {
+  height: 112px;
+  width: 100%;
+}
+.FixedActionPanel > .Row {
+  padding: 24px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}

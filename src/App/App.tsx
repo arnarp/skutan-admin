@@ -1,15 +1,15 @@
 import * as React from 'react'
 import { User } from 'firebase/app'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import { firebaseAuth } from '../firebase'
-import { Users } from '../Users'
-import { Home } from '../Home'
 import { LoginPage } from './LoginPage'
 import { LoadingPage } from './LoadingPage'
 import { AppBar } from './AppBar'
 import './App.css'
 import { customerRoutes } from '../Routes/Customers/routes'
 import { componentsRoutes } from '../Components/routes'
+import { dashboardRoutes } from '../Routes/Dashboard/routes'
+import { usersRoutes } from '../Routes/Users/routes'
 
 interface Claims {
   isAdmin: string | undefined
@@ -72,8 +72,8 @@ export class App extends React.Component<
             )}
             {this.state.claims.isAdmin && (
               <div>
-                <Route exact={true} path="/" component={Home} />
-                <Route path="/users" component={Users} />
+                {dashboardRoutes}
+                {usersRoutes}
                 {customerRoutes}
                 {componentsRoutes}
               </div>
