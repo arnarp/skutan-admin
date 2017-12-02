@@ -3,6 +3,10 @@ import { Button } from './Buttons/Button'
 import { Row } from './Layout/Row'
 import { AddIcon } from './Icons/AddIcon'
 import { TextInput } from './Inputs/TextInput'
+import { Grid } from './Layout/Grid'
+import { RequiredTextInputValidator } from './Inputs/TextInputValidators'
+import { IconButton } from './Buttons/IconButton'
+import { DeleteIcon } from './Icons/DeleteIcon'
 
 export class Components extends React.PureComponent<
   {},
@@ -23,8 +27,8 @@ export class Components extends React.PureComponent<
       <div>
         <h1>Íhlutir</h1>
         <h2>Buttons</h2>
-        <h3>Style: Raised (default)</h3>
-        <Row spacing="Medium" wrap={true}>
+        <h3>Button, Style: Raised (default)</h3>
+        <Grid gap="Medium" numberOfColums={2}>
           <Button color="Default" onClick={() => ({})}>
             Default
           </Button>
@@ -43,8 +47,8 @@ export class Components extends React.PureComponent<
           <Button color="Secondary" disabled={true} onClick={() => ({})}>
             Secondary disabled
           </Button>
-        </Row>
-        <h3>Style: Action</h3>
+        </Grid>
+        <h3>Button, Style: Action</h3>
         <Row spacing="Medium" wrap={true}>
           <Button style="Action" color="Default" onClick={() => ({})}>
             <AddIcon color="White" size="Large" />
@@ -56,9 +60,39 @@ export class Components extends React.PureComponent<
             <AddIcon color="White" size="Large" />
           </Button>
         </Row>
+        <h3>IconButton</h3>
+        <Row spacing="Medium">
+          <IconButton
+            Icon={AddIcon}
+            onClick={() => ({})}
+            color="Primary"
+            label="Bæta við"
+          />
+          <IconButton
+            Icon={AddIcon}
+            onClick={() => ({})}
+            color="Primary"
+            label="Bæta við"
+            disabled={true}
+          />
+          <IconButton
+            Icon={DeleteIcon}
+            onClick={() => ({})}
+            color="Error"
+            label="Eyða"
+          />
+          <IconButton
+            Icon={DeleteIcon}
+            onClick={() => ({})}
+            color="Error"
+            label="Eyða"
+            disabled={true}
+          />
+        </Row>
         <h2>Icons</h2>
         <Row spacing="Medium">
           <AddIcon color="Primary" size="Large" />
+          <DeleteIcon color="Error" size="Large" />
         </Row>
         <h2>Inputs</h2>
         <h3>TextInput</h3>
@@ -69,12 +103,16 @@ export class Components extends React.PureComponent<
             onChange={textInput1 => {
               this.setState({ textInput1 })
             }}
-            error={value => {
-              if (/.*\d.*/.test(value)) {
-                return 'Tölustafir ekki leyfðir'
-              }
-              return null
-            }}
+            validators={[
+              value => {
+                if (/.*\d.*/.test(value)) {
+                  return 'Tölustafir ekki leyfðir'
+                }
+                return null
+              },
+              value =>
+                value.length > 5 ? 'Má ekki vera lengra en 5 stafir' : null,
+            ]}
           />
           <TextInput
             label="Ekki tómt"
@@ -82,12 +120,7 @@ export class Components extends React.PureComponent<
             onChange={textInput2 => {
               this.setState({ textInput2 })
             }}
-            error={value => {
-              if (value === '') {
-                return 'Má ekki vera tómt'
-              }
-              return null
-            }}
+            validators={[RequiredTextInputValidator]}
           />
         </Row>
         <h2>....</h2>

@@ -1,6 +1,6 @@
 import * as React from 'react'
-import * as cn from 'classnames'
 import './Button.css'
+import * as classNames from 'classnames'
 
 type ButtonStyle = 'Raised' | 'Action'
 
@@ -19,9 +19,10 @@ export class Button extends React.PureComponent<ButtonProps, ButtonState> {
     const style: ButtonStyle = this.props.style || 'Raised'
     return (
       <button
+        type="button"
         disabled={this.props.disabled}
         onClick={this.props.onClick}
-        className={cn('Button', this.props.color, `Style-${style}`)}
+        className={classNames('Button', this.props.color, `Style-${style}`)}
       >
         {this.props.children}
       </button>

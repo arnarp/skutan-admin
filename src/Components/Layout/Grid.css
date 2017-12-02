@@ -1,0 +1,7 @@
+.Grid {
+  display: grid;
+}
+.Grid.Gap-Medium {
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+}

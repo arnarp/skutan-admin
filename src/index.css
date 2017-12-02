@@ -1,11 +1,14 @@
 :root {
   --default-color: hsla(0, 0%, 88%, 1);
   --default-color-alpha07: hsla(0, 0%, 88%, 0.7);
+  --default-color-alpha02: hsla(0, 0%, 88%, 0.2);
   --primary-color: hsla(207, 90%, 54%, 1);
   --primary-color-alpha07: hsla(207, 90%, 54%, 0.7);
+  --primary-color-alpha02: hsla(207, 90%, 54%, 0.2);
   --secondary-color: hsla(340, 100%, 63%, 1);
   --secondary-color-alpha07: hsla(340, 100%, 63%, 0.7);
   --error-color: hsla(348, 100%, 55%, 1);
+  --error-color-alpha02: hsla(348, 100%, 55%, 0.2);
 }
 
 body {
@@ -67,14 +70,16 @@ span,
 p {
   font-size: 16px;
 }
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
 .BlueBackground {
-  background-color: #4054a5;
+  background-color: var(--primary-color);
   color: white;
-}
-.Col {
-  display: flex;
-  flex-direction: column;
 }
 
 @keyframes Spin {
