@@ -25,3 +25,5 @@ export const isKennitala = (value: string) => {
 
   return passedModularCheck
 }
+
+export const isOnlyDigits = (value: string) => /^\d+$/.test(value)

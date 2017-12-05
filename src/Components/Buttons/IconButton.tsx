@@ -16,12 +16,21 @@ export class IconButton extends React.PureComponent<
   IconButtonProps,
   IconButtonState
 > {
+  button: HTMLButtonElement | null
   constructor(props: IconButtonProps) {
     super(props)
+  }
+  focus() {
+    if (this.button) {
+      this.button.focus()
+    }
   }
   render() {
     return (
       <button
+        ref={ref => {
+          this.button = ref
+        }}
         type="button"
         disabled={this.props.disabled}
         aria-label={this.props.label}

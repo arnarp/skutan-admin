@@ -47,13 +47,13 @@ export class Users extends React.Component<UserPageProps, UserPageState> {
     return (
       <div>
         <h1>Notendur</h1>
-        <table className="UsersTable">
+        <table className='UsersTable'>
           <thead>
             <tr>
-              <th className="NameTh">Nafn</th>
-              <th className="EmailTh">Email</th>
-              <th className="RoleTh" />
-              <th className="BtnTh" />
+              <th className='NameTh'>Nafn</th>
+              <th className='EmailTh'>Email</th>
+              <th className='RoleTh' />
+              <th className='BtnTh' />
             </tr>
           </thead>
           <tbody>

@@ -15,7 +15,7 @@ export class AppBar extends React.PureComponent<AppBarProps, {}> {
     return (
       <div role="banner" className="AppBar BlueBackground">
         <nav className="AppBarNav">
-          <Link to="/">Heim</Link>
+          <Link to="/">Heim </Link>
           <Link to="/users">Notendur</Link>
           <Link to="/customers">Viðskiptavinir</Link>
         </nav>

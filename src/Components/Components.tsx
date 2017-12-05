@@ -7,6 +7,8 @@ import { Grid } from './Layout/Grid'
 import { RequiredTextInputValidator } from './Inputs/TextInputValidators'
 import { IconButton } from './Buttons/IconButton'
 import { DeleteIcon } from './Icons/DeleteIcon'
+import { HamburgerMenuIcon } from './Icons/HamburgerMenuIcon'
+import { CloseIcon } from './Icons/CloseIcon'
 
 export class Components extends React.PureComponent<
   {},
@@ -76,6 +78,19 @@ export class Components extends React.PureComponent<
             disabled={true}
           />
           <IconButton
+            Icon={HamburgerMenuIcon}
+            onClick={() => ({})}
+            color="Default"
+            label="Menu"
+          />
+          <IconButton
+            disabled={true}
+            Icon={HamburgerMenuIcon}
+            onClick={() => ({})}
+            color="Default"
+            label="Bæta við"
+          />
+          <IconButton
             Icon={DeleteIcon}
             onClick={() => ({})}
             color="Error"
@@ -90,10 +105,24 @@ export class Components extends React.PureComponent<
           />
         </Row>
         <h2>Icons</h2>
-        <Row spacing="Medium">
+        <Grid gap="Medium" numberOfColums={8}>
+          <AddIcon color="Primary" size="Small" />
+          <AddIcon color="Primary" size="Medium" />
           <AddIcon color="Primary" size="Large" />
+          <AddIcon color="Primary" size="XLarge" />
+          <DeleteIcon color="Error" size="Small" />
+          <DeleteIcon color="Error" size="Medium" />
           <DeleteIcon color="Error" size="Large" />
-        </Row>
+          <DeleteIcon color="Error" size="XLarge" />
+          <HamburgerMenuIcon color="Default" size="Small" />
+          <HamburgerMenuIcon color="Default" size="Medium" />
+          <HamburgerMenuIcon color="Default" size="Large" />
+          <HamburgerMenuIcon color="Default" size="XLarge" />
+          <CloseIcon color="Secondary" size="Small" />
+          <CloseIcon color="Secondary" size="Medium" />
+          <CloseIcon color="Secondary" size="Large" />
+          <CloseIcon color="Secondary" size="XLarge" />
+        </Grid>
         <h2>Inputs</h2>
         <h3>TextInput</h3>
         <Row spacing="Medium">

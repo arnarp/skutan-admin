@@ -63,7 +63,6 @@ export class Popover extends React.PureComponent<PopoverProps, PopoverState> {
     root.inert = false
   }
   render() {
-    console.log(this.buttonContainerRect)
     return (
       <div>
         <div
@@ -92,14 +91,18 @@ export class Popover extends React.PureComponent<PopoverProps, PopoverState> {
                       }
                     }}
                     style={{
-                      top: `${this.buttonContainerRect
-                        ? this.buttonContainerRect.top +
-                          this.buttonContainerRect.height +
-                          this.props.deltaY
-                        : 0}px`,
-                      right: `${this.buttonContainerRect
-                        ? window.innerWidth - this.buttonContainerRect.right
-                        : 0}px`,
+                      top: `${
+                        this.buttonContainerRect
+                          ? this.buttonContainerRect.top +
+                            this.buttonContainerRect.height +
+                            this.props.deltaY
+                          : 0
+                      }px`,
+                      right: `${
+                        this.buttonContainerRect
+                          ? window.innerWidth - this.buttonContainerRect.right
+                          : 0
+                      }px`,
                     }}
                   >
                     {this.props.children}

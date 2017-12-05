@@ -5,10 +5,12 @@ import * as classNames from 'classnames'
 type ButtonStyle = 'Raised' | 'Action'
 
 interface ButtonProps {
-  onClick: () => void
+  onClick?: () => void
   disabled?: boolean
+  lookLikeDisabled?: boolean
   color: 'Default' | 'Primary' | 'Secondary'
   style?: ButtonStyle
+  type?: 'button' | 'submit'
 }
 interface ButtonState {}
 export class Button extends React.PureComponent<ButtonProps, ButtonState> {
@@ -19,10 +21,12 @@ export class Button extends React.PureComponent<ButtonProps, ButtonState> {
     const style: ButtonStyle = this.props.style || 'Raised'
     return (
       <button
-        type="button"
+        type={this.props.type || 'button'}
         disabled={this.props.disabled}
         onClick={this.props.onClick}
-        className={classNames('Button', this.props.color, `Style-${style}`)}
+        className={classNames('Button', this.props.color, `Style-${style}`, {
+          Disabled: this.props.lookLikeDisabled || this.props.disabled,
+        })}
       >
         {this.props.children}
       </button>

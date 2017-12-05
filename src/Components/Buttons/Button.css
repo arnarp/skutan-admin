@@ -9,6 +9,10 @@
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
     box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
     border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.Button.Disabled {
+  cursor: default;
 }
 .Button:focus {
   outline: 1px solid white;
@@ -57,10 +61,9 @@
 .Button.Default:hover {
   background-color: var(--default-color);
 }
-.Button.Default:disabled {
+.Button.Default.Disabled {
   color: hsla(0, 0%, 0%, 0.5);
   background-color: var(--default-color-alpha07);
-  cursor: default;
 }
 
 .Button.Primary {
@@ -70,7 +73,7 @@
 .Button.Primary:hover {
   background-color: var(--primary-color);
 }
-.Button.Primary:disabled {
+.Button.Primary.Disabled {
   color: rgba(0, 0, 0, 0.5);
   background-color: var(--primary-color-alpha07);
 }
@@ -82,11 +85,11 @@
 .Button.Secondary:hover {
   background-color: var(--secondary-color);
 }
-.Button.Secondary:disabled {
+.Button.Secondary.Disabled {
   color: rgba(0, 0, 0, 0.5);
   background-color: var(--secondary-color-alpha07);
 }
 
-.Button:disabled {
+.Button.Disabled {
   box-shadow: none;
 }

@@ -1,4 +1,4 @@
-import { isKennitala } from '../../Utils/Validators/isKennitala'
+import { isKennitala } from '../../Utils/stringValidators'
 
 export type TextInputValidator = (value: string) => string | null
 

@@ -1,14 +1,22 @@
 .NewCustomerModal {
   max-width: 500px;
+  min-width: 400px;
+}
+.NewCustomerModal ol > li {
+  padding: 12px 0 12px 36px;
+  margin-left: -12px;
+  margin-right: -12px;
+}
+.NewCustomerModal ol > li:nth-child(odd) {
+  background: hsla(0, 0%, 0%, 0.05);
 }
 .NewCustomerModal ol > li + li {
   border-top: 1px dotted hsla(0, 0%, 0%, 0.1);
 }
 .NewCustomerModal .DivisionsInputListItemForm {
-  flex-grow: 5;
+  flex-grow: 1;
 }
 .NewCustomerModal .DivisionsInputListItemButtons {
-  flex-grow: 1;
   padding: 0;
   padding-left: 24px;
 }

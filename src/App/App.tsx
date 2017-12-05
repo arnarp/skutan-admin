@@ -10,6 +10,7 @@ import { customerRoutes } from '../Routes/Customers/routes'
 import { componentsRoutes } from '../Components/routes'
 import { dashboardRoutes } from '../Routes/Dashboard/routes'
 import { usersRoutes } from '../Routes/Users/routes'
+import { Switch } from 'react-router'
 
 interface Claims {
   isAdmin: string | undefined
@@ -71,12 +72,12 @@ export class App extends React.Component<
               <p>Þetta vefsvæði er aðeins fyrir notendur með admin réttindi.</p>
             )}
             {this.state.claims.isAdmin && (
-              <div>
+              <Switch>
                 {dashboardRoutes}
                 {usersRoutes}
                 {customerRoutes}
                 {componentsRoutes}
-              </div>
+              </Switch>
             )}
           </main>
         </div>

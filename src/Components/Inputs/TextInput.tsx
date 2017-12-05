@@ -9,6 +9,7 @@ interface TextInputProps {
   value: string
   onChange: (name: string) => void
   validators: TextInputValidator[]
+  hasClickedSubmit?: boolean
 }
 interface TextInputState {
   hasFocus: boolean
@@ -38,9 +39,10 @@ export class TextInput extends React.PureComponent<
     }, null)
     const showErrorMessage: boolean | null | undefined =
       errorMsg !== null &&
-      !this.state.hasFocus &&
-      this.state.hasReceivedFocus &&
-      this.state.hasChangedInput
+      (this.props.hasClickedSubmit ||
+        (!this.state.hasFocus &&
+          this.state.hasReceivedFocus &&
+          this.state.hasChangedInput))
 
     return (
       <div

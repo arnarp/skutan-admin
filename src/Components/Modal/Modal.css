@@ -32,6 +32,8 @@
   border-radius: 2px;
   opacity: 0;
   transition: opacity 0.3s ease;
+  min-width: 308px;
+  max-height: calc(100vh - 24px);
 }
 .Modal.entering {
   opacity: 0;
@@ -40,7 +42,7 @@
   opacity: 1;
 }
 .Modal > header {
-  padding: 0 12px;
+  padding: 0 0 0 12px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -53,4 +55,6 @@
 }
 .Modal > .ModalContent {
   padding: 12px;
+  overflow-y: scroll;
+  max-height: calc(100vh - 24px - 48px);
 }
