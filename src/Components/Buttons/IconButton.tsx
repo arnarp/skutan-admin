@@ -6,7 +6,7 @@ import * as classNames from 'classnames'
 
 interface IconButtonProps {
   Icon: (props: IconProps) => JSX.Element
-  onClick: () => void
+  onClick?: () => void
   color: MainColors
   disabled?: boolean
   label: string

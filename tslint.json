@@ -14,6 +14,9 @@
     "jsx-no-lambda": false,
     "jsx-no-multiline-js": false,
     "jsx-wrap-multiline": false,
+    "jsx-self-close": false,
+    "jsx-alignment": false,
+    "jsx-boolean-value": false,
     "label-position": true,
     "member-ordering": [
       true,
@@ -38,7 +41,7 @@
     "no-construct": true,
     "no-debugger": true,
     "no-duplicate-variable": true,
-    "no-empty": true,
+    "no-empty": false,
     "no-eval": true,
     "no-shadowed-variable": true,
     "no-string-literal": true,

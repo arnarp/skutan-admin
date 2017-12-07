@@ -13,5 +13,15 @@ const config = {
 }
 firebase.initializeApp(config)
 
-export const ref = firebase.database().ref
 export const firebaseAuth = firebase.auth
+
+let firestore: firebase.firestore.Firestore // = firebase.firestore()
+
+export const getFirestore: () => Promise<firebase.firestore.Firestore> = () => {
+  if (firestore) {
+    return Promise.resolve(firestore)
+  } else {
+    firestore = firebase.firestore()
+    return Promise.resolve(firestore)
+  }
+}

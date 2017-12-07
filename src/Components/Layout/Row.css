@@ -11,6 +11,12 @@
 .Row.JustifyContentEnd {
   justify-content: flex-end;
 }
+.Row.JustifyContentSpaceBetween {
+  justify-content: space-between;
+}
 .Row.Wrap {
   flex-wrap: wrap;
+}
+.Row.GrowChildren > * {
+  flex-grow: 1;
 }

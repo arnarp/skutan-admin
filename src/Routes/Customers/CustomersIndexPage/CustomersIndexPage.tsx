@@ -1,11 +1,11 @@
 import * as React from 'react'
-import * as firebase from 'firebase/app'
 import { FixedActionPanel } from '../../../Components/Layout/FixedActionPanel'
 import { Button } from '../../../Components/Buttons/Button'
 import { AddIcon } from '../../../Components/Icons/AddIcon'
 import { NewCustomerModal } from './NewCustomerModal'
 import { Customer } from '../../../model'
 import { Link } from 'react-router-dom'
+import { getFirestore } from '../../../firebase'
 
 interface CustomersIndexPageProps {}
 interface CustomersIndexPageState {
@@ -23,19 +23,20 @@ export class CustomersIndexPage extends React.PureComponent<
     }
   }
   componentDidMount() {
-    this.unsubscribeOnCustomersSnapshot = firebase
-      .firestore()
-      .collection('customers')
-      .orderBy('name')
-      .onSnapshot(snapshot => {
-        this.setState(() => ({
-          customers: snapshot.docs.map(d => {
-            const obj = d.data()
-            const id = d.id
-            return { ...obj, id }
-          }),
-        }))
-      })
+    getFirestore().then(firestore => {
+      this.unsubscribeOnCustomersSnapshot = firestore
+        .collection('customers')
+        .orderBy('name')
+        .onSnapshot(snapshot => {
+          this.setState(() => ({
+            customers: snapshot.docs.map(d => {
+              const obj = d.data()
+              const id = d.id
+              return { ...obj, id }
+            }),
+          }))
+        })
+    })
   }
   componentWillUnmount() {
     if (this.unsubscribeOnCustomersSnapshot) {

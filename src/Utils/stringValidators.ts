@@ -27,3 +27,6 @@ export const isKennitala = (value: string) => {
 }
 
 export const isOnlyDigits = (value: string) => /^\d+$/.test(value)
+
+export const isEmail = (value: string) =>
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)

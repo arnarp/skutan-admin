@@ -1,6 +1,5 @@
 import * as React from 'react'
 import * as uuid from 'uuid'
-import * as firebase from 'firebase/app'
 import './NewCustomerModal.css'
 import { TextInput } from '../../../Components/Inputs/TextInput'
 import {
@@ -19,6 +18,7 @@ import { FormEvent } from 'react'
 import { isKennitala, isOnlyDigits } from '../../../Utils/stringValidators'
 import { Omit } from '../../../Utils/types'
 import { Customer, CustomerDivision } from '../../../model'
+import { getFirestore } from '../../../firebase'
 
 interface NewCustomerModalProps {
   button: JSX.Element
@@ -87,15 +87,14 @@ export class NewCustomerModal extends React.PureComponent<
       if (this.modal) {
         this.modal.closeModal()
       }
-      firebase
-        .firestore()
-        .collection('customers')
-        .add({
+      getFirestore().then(firestore => {
+        firestore.collection('customers').add({
           name,
           kennitala,
           navisionId,
           divisions,
         })
+      })
     }
   }
   render() {

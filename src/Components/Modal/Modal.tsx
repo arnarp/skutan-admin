@@ -62,10 +62,10 @@ export class Modal extends React.PureComponent<ModalProps, ModalState> {
   }
   handleClose() {
     this.setState(() => ({ open: false }))
-    this.focusWhenOpened.focus()
     // tslint:disable-next-line:no-any
     const root = document.getElementById('root') as any
     root.inert = false
+    this.focusWhenOpened.focus()
   }
   render() {
     return (

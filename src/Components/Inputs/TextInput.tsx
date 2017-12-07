@@ -10,6 +10,7 @@ interface TextInputProps {
   onChange: (name: string) => void
   validators: TextInputValidator[]
   hasClickedSubmit?: boolean
+  type?: 'text' | 'email'
 }
 interface TextInputState {
   hasFocus: boolean
@@ -31,12 +32,15 @@ export class TextInput extends React.PureComponent<
     }
   }
   render() {
-    const errorMsg = this.props.validators.reduce((res, validator) => {
-      if (res === null) {
-        return validator(this.props.value)
-      }
-      return res
-    }, null)
+    const errorMsg = this.props.validators.reduce(
+      (res: null | string, validator) => {
+        if (res === null) {
+          return validator(this.props.value)
+        }
+        return res
+      },
+      null,
+    )
     const showErrorMessage: boolean | null | undefined =
       errorMsg !== null &&
       (this.props.hasClickedSubmit ||
@@ -55,6 +59,7 @@ export class TextInput extends React.PureComponent<
         <label htmlFor={this.id}>{this.props.label}</label>
         <div>
           <input
+            type={this.props.type}
             onFocus={() =>
               this.setState(() => ({ hasFocus: true, hasReceivedFocus: true }))
             }

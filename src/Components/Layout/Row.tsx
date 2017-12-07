@@ -6,7 +6,8 @@ import { ReactNode } from 'react'
 interface RowProps {
   children: ReactNode
   spacing?: 'Medium'
-  justifyContent?: 'Start' | 'End'
+  justifyContent?: 'Start' | 'End' | 'SpaceBetween'
+  growChildren?: boolean
   wrap?: boolean
 }
 
@@ -18,6 +19,8 @@ export const Row = (props: RowProps) => (
       {
         JustifyContentStart: props.justifyContent === 'Start',
         JustifyContentEnd: props.justifyContent === 'End',
+        JustifyContentSpaceBetween: props.justifyContent === 'SpaceBetween',
+        GrowChildren: props.growChildren,
         Wrap: props.wrap,
       },
     )}

@@ -9,12 +9,14 @@ import { IconButton } from './Buttons/IconButton'
 import { DeleteIcon } from './Icons/DeleteIcon'
 import { HamburgerMenuIcon } from './Icons/HamburgerMenuIcon'
 import { CloseIcon } from './Icons/CloseIcon'
+import { RadioGroup } from './Inputs/RadioGroup'
 
 export class Components extends React.PureComponent<
   {},
   {
     textInput1: string
     textInput2: string
+    radio1: string
   }
 > {
   constructor(props: {}) {
@@ -22,6 +24,7 @@ export class Components extends React.PureComponent<
     this.state = {
       textInput1: '',
       textInput2: '',
+      radio1: 'employee',
     }
   }
   render() {
@@ -152,6 +155,16 @@ export class Components extends React.PureComponent<
             validators={[RequiredTextInputValidator]}
           />
         </Row>
+        <h3>RadioGroup</h3>
+        <RadioGroup
+          legend="Hlutverk"
+          options={[
+            { value: 'employee', label: 'Starfsmaður' },
+            { value: 'manager', label: 'Umsjónarmaður' },
+          ]}
+          value={this.state.radio1}
+          onChange={value => this.setState(() => ({ radio1: value }))}
+        />
         <h2>....</h2>
       </div>
     )

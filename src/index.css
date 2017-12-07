@@ -76,6 +76,15 @@ ul {
   margin: 0;
   padding: 0;
 }
+dl {
+  margin: 0;
+}
+dl > * + * {
+  margin-top: 6px;
+}
+dl dt {
+  color: hsla(0, 0%, 0%, 0.6);
+}
 
 .BlueBackground {
   background-color: var(--primary-color);
