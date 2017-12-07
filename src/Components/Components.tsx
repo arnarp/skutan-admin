@@ -11,12 +11,17 @@ import { HamburgerMenuIcon } from './Icons/HamburgerMenuIcon'
 import { CloseIcon } from './Icons/CloseIcon'
 import { RadioGroup } from './Inputs/RadioGroup'
 
+type EmployeeRole = 'employee' | 'manager'
+const EmployeeRoleRadioGroup = RadioGroup as {
+  new (): RadioGroup<EmployeeRole>
+}
+
 export class Components extends React.PureComponent<
   {},
   {
     textInput1: string
     textInput2: string
-    radio1: string
+    radio1: EmployeeRole
   }
 > {
   constructor(props: {}) {
@@ -156,7 +161,7 @@ export class Components extends React.PureComponent<
           />
         </Row>
         <h3>RadioGroup</h3>
-        <RadioGroup
+        <EmployeeRoleRadioGroup
           legend="Hlutverk"
           options={[
             { value: 'employee', label: 'Starfsmaður' },

@@ -2,21 +2,22 @@ import * as React from 'react'
 import './RadioGroup.css'
 import * as classNames from 'classnames'
 
-interface RadioGroupProps {
+interface RadioGroupProps<T> {
   legend: string
-  options: Array<{ label: string; value: string }>
-  value: string
-  onChange: (value: string) => void
+  options: Array<{ label: string; value: T }>
+  value: T
+  onChange: (value: T) => void
 }
 interface RadioGroupState {}
-export class RadioGroup extends React.PureComponent<
-  RadioGroupProps,
+export class RadioGroup<T extends string> extends React.PureComponent<
+  RadioGroupProps<T>,
   RadioGroupState
 > {
-  constructor(props: RadioGroupProps) {
+  constructor(props: RadioGroupProps<T>) {
     super(props)
   }
   render() {
+    const RadioOfT = Radio as { new (): Radio<T> }
     return (
       <fieldset className="RadioGroupFieldSet">
         <legend>{this.props.legend}</legend>
@@ -26,7 +27,7 @@ export class RadioGroup extends React.PureComponent<
           aria-label={this.props.legend}
         >
           {this.props.options.map(o => (
-            <Radio
+            <RadioOfT
               key={o.value}
               label={o.label}
               value={o.value}
@@ -40,17 +41,20 @@ export class RadioGroup extends React.PureComponent<
   }
 }
 
-interface RadioProps {
+interface RadioProps<T> {
   label: string
-  value: string
+  value: T
   checked: boolean
-  onChange: (value: string) => void
+  onChange: (value: T) => void
 }
 interface RadioState {
   focus: boolean
 }
-export class Radio extends React.PureComponent<RadioProps, RadioState> {
-  constructor(props: RadioProps) {
+export class Radio<T extends string> extends React.PureComponent<
+  RadioProps<T>,
+  RadioState
+> {
+  constructor(props: RadioProps<T>) {
     super(props)
     this.state = { focus: false }
   }
