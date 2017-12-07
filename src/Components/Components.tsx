@@ -10,8 +10,8 @@ import { DeleteIcon } from './Icons/DeleteIcon'
 import { HamburgerMenuIcon } from './Icons/HamburgerMenuIcon'
 import { CloseIcon } from './Icons/CloseIcon'
 import { RadioGroup } from './Inputs/RadioGroup'
+import { EmployeeRole } from '../model'
 
-type EmployeeRole = 'employee' | 'manager'
 const EmployeeRoleRadioGroup = RadioGroup as {
   new (): RadioGroup<EmployeeRole>
 }
@@ -29,7 +29,7 @@ export class Components extends React.PureComponent<
     this.state = {
       textInput1: '',
       textInput2: '',
-      radio1: 'employee',
+      radio1: EmployeeRole.Employee,
     }
   }
   render() {
@@ -164,8 +164,8 @@ export class Components extends React.PureComponent<
         <EmployeeRoleRadioGroup
           legend="Hlutverk"
           options={[
-            { value: 'employee', label: 'Starfsmaður' },
-            { value: 'manager', label: 'Umsjónarmaður' },
+            { value: EmployeeRole.Employee, label: 'Starfsmaður' },
+            { value: EmployeeRole.Manager, label: 'Umsjónarmaður' },
           ]}
           value={this.state.radio1}
           onChange={value => this.setState(() => ({ radio1: value }))}

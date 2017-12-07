@@ -7,6 +7,8 @@ import { Row } from '../../../Components/Layout/Row'
 import { Button } from '../../../Components/Buttons/Button'
 import { isEmail } from '../../../Utils/stringValidators'
 import { FormEvent } from 'react'
+import { EmployeeRole } from '../../../model'
+import { RadioGroup } from '../../../Components/Inputs/RadioGroup'
 
 interface SendEmployeeInvitationModalProps {
   button: JSX.Element
@@ -14,16 +16,20 @@ interface SendEmployeeInvitationModalProps {
 }
 interface SendEmployeeInvitationModalState {
   emailAddress: string
-  role: 'manager' | 'employee'
+  role: EmployeeRole
   hasClickedSubmit: boolean
 }
 const initialState: SendEmployeeInvitationModalState = {
   emailAddress: '',
-  role: 'employee',
+  role: EmployeeRole.Employee,
   hasClickedSubmit: false,
 }
 const isValidState = (state: SendEmployeeInvitationModalState) =>
   isEmail(state.emailAddress)
+
+const EmployeeRoleRadioGroup = RadioGroup as {
+  new (): RadioGroup<EmployeeRole>
+}
 
 export class SendEmployeeInvitationModal extends React.PureComponent<
   SendEmployeeInvitationModalProps,
@@ -58,6 +64,15 @@ export class SendEmployeeInvitationModal extends React.PureComponent<
                 validators={[EmailTextInputValidator]}
                 hasClickedSubmit={this.state.hasClickedSubmit}
                 type="email"
+              />
+              <EmployeeRoleRadioGroup
+                legend="Hlutverk"
+                options={[
+                  { value: EmployeeRole.Employee, label: 'Starfsmaður' },
+                  { value: EmployeeRole.Manager, label: 'Umsjónarmaður' },
+                ]}
+                value={this.state.role}
+                onChange={value => this.setState(() => ({ role: value }))}
               />
               <Row spacing="Medium" justifyContent="End">
                 <Button

@@ -10,3 +10,8 @@ export interface CustomerDivision {
   readonly name: string
   readonly address: string
 }
+
+export const enum EmployeeRole {
+  Manager = 'manager',
+  Employee = 'employee',
+}
