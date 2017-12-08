@@ -9,6 +9,8 @@ import { isEmail } from '../../../Utils/stringValidators'
 import { FormEvent } from 'react'
 import { EmployeeRole } from '../../../model'
 import { RadioGroup } from '../../../Components/Inputs/RadioGroup'
+import { addDays } from '../../../Utils/dateUtils'
+import { getFirestore } from '../../../firebase'
 
 interface SendEmployeeInvitationModalProps {
   button: JSX.Element
@@ -44,6 +46,20 @@ export class SendEmployeeInvitationModal extends React.PureComponent<
   onSubmit(event: FormEvent<{}>) {
     event.preventDefault()
     this.setState(() => ({ hasClickedSubmit: true }))
+    if (isValidState(this.state)) {
+      const invitation = {
+        customerId: this.props.customerId,
+        email: this.state.emailAddress,
+        expires: addDays(new Date(), 1),
+        role: this.state.role,
+      }
+      if (this.modal) {
+        this.modal.closeModal()
+      }
+      getFirestore().then(firestore => {
+        firestore.collection('customerInvites').add(invitation)
+      })
+    }
   }
   render() {
     return (

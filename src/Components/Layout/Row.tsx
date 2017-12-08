@@ -9,6 +9,7 @@ interface RowProps {
   justifyContent?: 'Start' | 'End' | 'SpaceBetween'
   growChildren?: boolean
   wrap?: boolean
+  breakPoint?: '610'
 }
 
 export const Row = (props: RowProps) => (
@@ -22,6 +23,7 @@ export const Row = (props: RowProps) => (
         JustifyContentSpaceBetween: props.justifyContent === 'SpaceBetween',
         GrowChildren: props.growChildren,
         Wrap: props.wrap,
+        Break610: props.breakPoint === '610',
       },
     )}
   >

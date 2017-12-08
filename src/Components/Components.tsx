@@ -11,6 +11,8 @@ import { HamburgerMenuIcon } from './Icons/HamburgerMenuIcon'
 import { CloseIcon } from './Icons/CloseIcon'
 import { RadioGroup } from './Inputs/RadioGroup'
 import { EmployeeRole } from '../model'
+import { Table } from './Table'
+import { Thead } from './Table/Thead'
 
 const EmployeeRoleRadioGroup = RadioGroup as {
   new (): RadioGroup<EmployeeRole>
@@ -170,7 +172,37 @@ export class Components extends React.PureComponent<
           value={this.state.radio1}
           onChange={value => this.setState(() => ({ radio1: value }))}
         />
-        <h2>....</h2>
+        <h2>Table</h2>
+        <Table>
+          <Thead>
+            <tr>
+              <th>Dálkur 1</th>
+              <th>D2</th>
+              <th>D3</th>
+              <th>D4</th>
+            </tr>
+          </Thead>
+          <tbody>
+            <tr>
+              <td>Data1</td>
+              <td>Data 2</td>
+              <td>Data 3</td>
+              <td>Data 4</td>
+            </tr>
+            <tr>
+              <td>Data1</td>
+              <td>Data 2</td>
+              <td>Data 3</td>
+              <td>Data 4</td>
+            </tr>
+            <tr>
+              <td>Data1</td>
+              <td>Data 2</td>
+              <td>Data 3</td>
+              <td>Data 4</td>
+            </tr>
+          </tbody>
+        </Table>
       </div>
     )
   }

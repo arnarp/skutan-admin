@@ -15,3 +15,11 @@ export const enum EmployeeRole {
   Manager = 'manager',
   Employee = 'employee',
 }
+
+export interface CustomerInvitation {
+  id: string
+  customerId: string
+  email: string
+  expires: Date
+  role: EmployeeRole
+}

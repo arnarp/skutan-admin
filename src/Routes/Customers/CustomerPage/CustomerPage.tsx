@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router-dom'
-import { Customer } from '../../../model'
+import { Customer, CustomerInvitation } from '../../../model'
 import { LoadingSpinner } from '../../../Components/LoadingSpinner/LoadingSpinner'
 import { Row } from '../../../Components/Layout/Row'
 import { Col } from '../../../Components/Layout/Col'
@@ -9,42 +9,65 @@ import { IconButton } from '../../../Components/Buttons/IconButton'
 import { AddIcon } from '../../../Components/Icons/AddIcon'
 import { SendEmployeeInvitationModal } from './SendEmployeeInvitationModal'
 import { getFirestore } from '../../../firebase'
+import { Table } from '../../../Components/Table/Table'
+import { onWindowResize } from '../../../Utils/windowResize'
 
 interface CustomerPageProps extends RouteComponentProps<{ id: string }> {}
 interface CustomerPageState {
   customer: Customer | undefined | null
+  invitations: CustomerInvitation[] | undefined
+  windowWidth: number
 }
 export class CustomerPage extends React.PureComponent<
   CustomerPageProps,
   CustomerPageState
 > {
-  unsubscribe?: () => void
+  unsubscribes: Array<() => void>
   constructor(props: CustomerPageProps) {
     super(props)
     this.state = {
       customer: undefined,
+      invitations: undefined,
+      windowWidth: 0,
     }
+    this.unsubscribes = []
   }
   componentDidMount() {
     getFirestore().then(firestore => {
-      this.unsubscribe = firestore
-        .collection('customers')
-        .doc(this.props.match.params.id)
-        .onSnapshot(doc => {
-          if (doc.exists) {
-            const customer = doc.data()
-            customer.id = doc.id
-            this.setState(() => ({ customer }))
-          } else {
-            this.setState(() => ({ customer: null }))
-          }
-        })
+      this.unsubscribes.push(
+        firestore
+          .collection('customers')
+          .doc(this.props.match.params.id)
+          .onSnapshot(doc => {
+            if (doc.exists) {
+              const customer = doc.data()
+              customer.id = doc.id
+              this.setState(() => ({ customer }))
+            } else {
+              this.setState(() => ({ customer: null }))
+            }
+          }),
+      )
+      this.unsubscribes.push(
+        firestore
+          .collection('customerInvites')
+          .where('customerId', '==', this.props.match.params.id)
+          .where('expires', '>', new Date())
+          .onSnapshot(snapshot => {
+            this.setState(() => ({
+              invitations: snapshot.docs.map(d => ({ ...d.data(), id: d.id })),
+            }))
+          }),
+      )
+      this.unsubscribes.push(
+        onWindowResize((height, width) => {
+          this.setState(() => ({ windowWidth: width }))
+        }),
+      )
     })
   }
   componentWillUnmount() {
-    if (this.unsubscribe) {
-      this.unsubscribe()
-    }
+    this.unsubscribes.forEach(u => u())
   }
   render() {
     if (this.state.customer === undefined) {
@@ -57,10 +80,16 @@ export class CustomerPage extends React.PureComponent<
         </div>
       )
     }
+
     return (
       <Col spacing="Medium">
         <h1>{this.state.customer.name}</h1>
-        <Row spacing="Medium" justifyContent="Start" growChildren={true}>
+        <Row
+          spacing="Medium"
+          justifyContent="Start"
+          growChildren={true}
+          breakPoint="610"
+        >
           <Card>
             <CardContent>
               <Col spacing="Medium">
@@ -108,7 +137,27 @@ export class CustomerPage extends React.PureComponent<
                 />
               </Row>
             </header>
+            <h3>Send virk boð</h3>
           </CardContent>
+          <Table>
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Hlutverk</th>
+                <th>Gildir til</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.invitations &&
+                this.state.invitations.map(i => (
+                  <tr key={i.id}>
+                    <td>{i.email}</td>
+                    <td>{i.role}</td>
+                    <td>{i.expires.toLocaleString()}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </Table>
         </Card>
       </Col>
     )
