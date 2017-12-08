@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { UserRecord, UserClaims } from './Users'
+import { UserRecord, UserClaims } from './UsersIndexPage'
 import { ModalControl, Modal } from '../../Components/Modal/Modal'
 import { LoadingSpinner } from '../../Components/LoadingSpinner/index'
 import { Row } from '../../Components/Layout/Row'

@@ -1,8 +1,10 @@
 import * as React from 'react'
 import { AdminIcon } from './AdminIcon'
-import './Users.css'
+import './UsersIndexPage.css'
 import { EditUserModal } from './EditUserModal'
 import { getFirestore } from '../../firebase'
+import { Card } from '../../Components/Layout/Card'
+import { Table } from '../../Components/Table/Table'
 
 export interface UserRecord {
   uId: string
@@ -14,14 +16,17 @@ export interface UserRecord {
 export interface UserClaims {
   isAdmin?: boolean
 }
-interface UserPageProps {}
-interface UserPageState {
+interface UsersIndexPageProps {}
+interface UsersIndexPageState {
   users: UserRecord[]
 }
 
-export class Users extends React.Component<UserPageProps, UserPageState> {
+export class UsersIndexPage extends React.Component<
+  UsersIndexPageProps,
+  UsersIndexPageState
+> {
   unsubscribeOnUsersSnapshot: () => void
-  constructor(props: UserPageProps) {
+  constructor(props: UsersIndexPageProps) {
     super(props)
     this.state = { users: [] }
   }
@@ -48,28 +53,30 @@ export class Users extends React.Component<UserPageProps, UserPageState> {
     return (
       <div>
         <h1>Notendur</h1>
-        <table className="UsersTable">
-          <thead>
-            <tr>
-              <th className="NameTh">Nafn</th>
-              <th className="EmailTh">Email</th>
-              <th className="RoleTh" />
-              <th className="BtnTh" />
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.users.map(u => (
-              <tr key={u.uId}>
-                <td>{u.displayName}</td>
-                <td>{u.email}</td>
-                <td>{u.claims.isAdmin && <AdminIcon />}</td>
-                <td>
-                  <EditUserModal user={u} />
-                </td>
+        <Card>
+          <Table className="UsersTable">
+            <thead>
+              <tr>
+                <th className="NameTh">Nafn</th>
+                <th className="EmailTh">Email</th>
+                <th className="RoleTh" />
+                <th className="BtnTh" />
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {this.state.users.map(u => (
+                <tr key={u.uId}>
+                  <td>{u.displayName}</td>
+                  <td>{u.email}</td>
+                  <td>{u.claims.isAdmin && <AdminIcon />}</td>
+                  <td>
+                    <EditUserModal user={u} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </Card>
       </div>
     )
   }

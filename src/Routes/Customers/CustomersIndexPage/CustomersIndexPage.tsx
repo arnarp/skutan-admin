@@ -6,6 +6,8 @@ import { NewCustomerModal } from './NewCustomerModal'
 import { Customer } from '../../../model'
 import { Link } from 'react-router-dom'
 import { getFirestore } from '../../../firebase'
+import { Table } from '../../../Components/Table/Table'
+import { Card } from '../../../Components/Layout/Card'
 
 interface CustomersIndexPageProps {}
 interface CustomersIndexPageState {
@@ -47,22 +49,26 @@ export class CustomersIndexPage extends React.PureComponent<
     return (
       <div>
         <h1>Viðskiptavinir</h1>
-        <table>
-          <thead>
-            <tr>
-              <th>Nafn</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.customers.map(c => (
-              <tr key={c.id}>
-                <td>
-                  <Link to={`/customer/${c.id}`}>{c.name}</Link>
-                </td>
+        <Card>
+          <Table>
+            <thead>
+              <tr>
+                <th>Nafn</th>
+                <th>Kennitala</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {this.state.customers.map(c => (
+                <tr key={c.id}>
+                  <td>
+                    <Link to={`/customer/${c.id}`}>{c.name}</Link>
+                  </td>
+                  <td>{c.kennitala}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </Card>
         <FixedActionPanel>
           <NewCustomerModal
             button={
