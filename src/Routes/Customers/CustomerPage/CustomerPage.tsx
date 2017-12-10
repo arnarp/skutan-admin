@@ -134,6 +134,7 @@ export class CustomerPage extends React.PureComponent<
                     />
                   }
                   customerId={this.state.customer.id}
+                  customerName={this.state.customer.name}
                 />
               </Row>
             </header>

@@ -19,7 +19,12 @@ export const enum EmployeeRole {
 export interface CustomerInvitation {
   id: string
   customerId: string
+  customerName: string
   email: string
   expires: Date
   role: EmployeeRole
+  usedBy?: {
+    userId: string
+    userDisplayName: string
+  }
 }

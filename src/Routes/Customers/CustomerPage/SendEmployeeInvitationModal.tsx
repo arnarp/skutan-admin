@@ -7,14 +7,16 @@ import { Row } from '../../../Components/Layout/Row'
 import { Button } from '../../../Components/Buttons/Button'
 import { isEmail } from '../../../Utils/stringValidators'
 import { FormEvent } from 'react'
-import { EmployeeRole } from '../../../model'
+import { EmployeeRole, CustomerInvitation } from '../../../model'
 import { RadioGroup } from '../../../Components/Inputs/RadioGroup'
 import { addDays } from '../../../Utils/dateUtils'
 import { getFirestore } from '../../../firebase'
+import { Omit } from '../../../Utils/types'
 
 interface SendEmployeeInvitationModalProps {
   button: JSX.Element
   customerId: string
+  customerName: string
 }
 interface SendEmployeeInvitationModalState {
   emailAddress: string
@@ -47,8 +49,9 @@ export class SendEmployeeInvitationModal extends React.PureComponent<
     event.preventDefault()
     this.setState(() => ({ hasClickedSubmit: true }))
     if (isValidState(this.state)) {
-      const invitation = {
+      const invitation: Omit<CustomerInvitation, 'id'> = {
         customerId: this.props.customerId,
+        customerName: this.props.customerName,
         email: this.state.emailAddress,
         expires: addDays(new Date(), 1),
         role: this.state.role,
