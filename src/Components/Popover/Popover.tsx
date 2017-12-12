@@ -49,8 +49,10 @@ export class Popover extends React.PureComponent<PopoverProps, PopoverState> {
           //   this.closeButton.focus()
           // }
           // tslint:disable-next-line:no-any
-          const root = document.getElementById('root') as any
-          root.inert = true
+          const root = document.getElementById('root')
+          if (root) {
+            root.inert = true
+          }
         }, 30)
       },
     )
@@ -59,8 +61,10 @@ export class Popover extends React.PureComponent<PopoverProps, PopoverState> {
     this.setState(() => ({ open: false }))
     this.focusWhenOpened.focus()
     // tslint:disable-next-line:no-any
-    const root = document.getElementById('root') as any
-    root.inert = false
+    const root = document.getElementById('root')
+    if (root) {
+      root.inert = false
+    }
   }
   render() {
     return (

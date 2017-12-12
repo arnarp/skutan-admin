@@ -54,8 +54,10 @@ export class Modal extends React.PureComponent<ModalProps, ModalState> {
             this.closeButton.focus()
           }
           // tslint:disable-next-line:no-any
-          const root = document.getElementById('root') as any
-          root.inert = true
+          const root = document.getElementById('root')
+          if (root) {
+            root.inert = true
+          }
         }, 30)
       },
     )
@@ -63,8 +65,10 @@ export class Modal extends React.PureComponent<ModalProps, ModalState> {
   handleClose() {
     this.setState(() => ({ open: false }))
     // tslint:disable-next-line:no-any
-    const root = document.getElementById('root') as any
-    root.inert = false
+    const root = document.getElementById('root')
+    if (root) {
+      root.inert = false
+    }
     this.focusWhenOpened.focus()
   }
   render() {

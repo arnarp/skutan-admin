@@ -4,6 +4,7 @@ import { User } from 'firebase/app'
 import { firebaseAuth } from '../../firebase'
 import { Link } from 'react-router-dom'
 import { Popover, PopoverControl } from '../../Components/Popover'
+import { Col } from '../../Components/Layout/Col'
 
 interface AppBarProps {
   user: User
@@ -37,10 +38,10 @@ export class AppBar extends React.PureComponent<AppBarProps, {}> {
               {this.props.user.photoURL && (
                 <img src={this.props.user.photoURL} />
               )}
-              <div className="Col">
+              <Col>
                 <span>{this.props.user.displayName}</span>
                 <span>{this.props.user.email}</span>
-              </div>
+              </Col>
             </div>
             <div className="ActionFooter">
               <button
