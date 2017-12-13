@@ -24,7 +24,7 @@ export interface CustomerInvitation {
   expires: Date
   role: EmployeeRole
   usedBy?: {
-    userId: string
+    uid: string
     userDisplayName: string
   }
 }

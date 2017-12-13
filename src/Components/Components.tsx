@@ -44,24 +44,24 @@ export class Components extends React.PureComponent<
           <Button color="Default" onClick={() => ({})}>
             Default
           </Button>
-          <Button color="Default" disabled={true} onClick={() => ({})}>
+          <Button color="Default" disabled onClick={() => ({})}>
             Default disabled
           </Button>
           <Button color="Primary" onClick={() => ({})}>
             Primary
           </Button>
-          <Button color="Primary" disabled={true} onClick={() => ({})}>
+          <Button color="Primary" disabled onClick={() => ({})}>
             Primary disabled
           </Button>
           <Button color="Secondary" onClick={() => ({})}>
             Secondary
           </Button>
-          <Button color="Secondary" disabled={true} onClick={() => ({})}>
+          <Button color="Secondary" disabled onClick={() => ({})}>
             Secondary disabled
           </Button>
         </Grid>
         <h3>Button, Style: Action</h3>
-        <Row spacing="Medium" wrap={true}>
+        <Row spacing="Medium" wrap>
           <Button style="Action" color="Default" onClick={() => ({})}>
             <AddIcon color="White" size="Large" />
           </Button>
@@ -72,6 +72,27 @@ export class Components extends React.PureComponent<
             <AddIcon color="White" size="Large" />
           </Button>
         </Row>
+        <h3>Button, Style: Flat</h3>
+        <Grid gap="Medium" numberOfColums={4}>
+          <Button color="Default" style="Flat">
+            Default
+          </Button>
+          <Button color="Default" style="Flat" disabled>
+            Disbled
+          </Button>
+          <Button color="Primary" style="Flat">
+            Primary
+          </Button>
+          <Button color="Primary" style="Flat" disabled>
+            Disbled
+          </Button>
+          <Button color="Secondary" style="Flat">
+            Secondary
+          </Button>
+          <Button color="Secondary" style="Flat" disabled>
+            Disbled
+          </Button>
+        </Grid>
         <h3>IconButton</h3>
         <Row spacing="Medium">
           <IconButton
