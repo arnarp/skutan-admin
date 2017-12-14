@@ -28,3 +28,15 @@ export interface CustomerInvitation {
     userDisplayName: string
   }
 }
+
+export interface UserRecord {
+  uid: string
+  displayName: string
+  email: string
+  photoURL: string
+  customerId?: string
+}
+export interface UserClaims {
+  isAdmin?: boolean
+  customer?: { [customerId: string]: { name: string; role: EmployeeRole } }
+}

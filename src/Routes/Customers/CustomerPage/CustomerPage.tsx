@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router-dom'
-import { Customer, CustomerInvitation } from '../../../model'
+import { Customer, CustomerInvitation, UserRecord } from '../../../model'
 import { LoadingSpinner } from '../../../Components/LoadingSpinner/LoadingSpinner'
 import { Row } from '../../../Components/Layout/Row'
 import { Col } from '../../../Components/Layout/Col'
@@ -14,8 +14,9 @@ import { onWindowResize } from '../../../Utils/windowResize'
 
 interface CustomerPageProps extends RouteComponentProps<{ id: string }> {}
 interface CustomerPageState {
-  customer: Customer | undefined | null
-  invitations: CustomerInvitation[] | undefined
+  customer?: Customer | null
+  employees?: UserRecord[]
+  invitations?: CustomerInvitation[]
   windowWidth: number
 }
 export class CustomerPage extends React.PureComponent<
@@ -26,8 +27,6 @@ export class CustomerPage extends React.PureComponent<
   constructor(props: CustomerPageProps) {
     super(props)
     this.state = {
-      customer: undefined,
-      invitations: undefined,
       windowWidth: 0,
     }
     this.unsubscribes = []
@@ -56,6 +55,16 @@ export class CustomerPage extends React.PureComponent<
           .onSnapshot(snapshot => {
             this.setState(() => ({
               invitations: snapshot.docs.map(d => ({ ...d.data(), id: d.id })),
+            }))
+          }),
+      )
+      this.unsubscribes.push(
+        firestore
+          .collection('users')
+          .where('customerId', '==', this.props.match.params.id)
+          .onSnapshot(snapshot => {
+            this.setState(() => ({
+              employees: snapshot.docs.map(d => ({ ...d.data(), uid: d.id })),
             }))
           }),
       )
@@ -155,6 +164,26 @@ export class CustomerPage extends React.PureComponent<
                     <td>{i.email}</td>
                     <td>{i.role}</td>
                     <td>{i.expires.toLocaleString()}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </Table>
+          <CardContent>
+            <h3>Skráðir starfsmenn</h3>
+          </CardContent>
+          <Table>
+            <thead>
+              <tr>
+                <th>Nafn</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.employees &&
+                this.state.employees.map(e => (
+                  <tr key={e.uid}>
+                    <td>{e.displayName}</td>
+                    <td>{e.email}</td>
                   </tr>
                 ))}
             </tbody>

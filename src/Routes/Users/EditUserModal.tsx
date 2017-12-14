@@ -1,14 +1,15 @@
 import * as React from 'react'
-import { UserRecord, UserClaims } from './UsersIndexPage'
 import { ModalControl, Modal } from '../../Components/Modal/Modal'
 import { LoadingSpinner } from '../../Components/LoadingSpinner/index'
 import { Row } from '../../Components/Layout/Row'
 import { Button } from '../../Components/Buttons/Button'
 import { isSame } from '../../Utils/isSame'
 import { getFirestore } from '../../firebase'
+import { UserRecord, UserClaims } from '../../model'
 
 interface EditUserModalProps {
-  user: Readonly<UserRecord>
+  readonly user: UserRecord
+  readonly userClaims: UserClaims
 }
 interface EditUserModalState {
   claims: UserClaims
@@ -24,7 +25,7 @@ export class EditUserModal extends React.PureComponent<
   constructor(props: EditUserModalProps) {
     super(props)
     this.state = {
-      claims: { ...props.user.claims },
+      claims: { ...props.userClaims },
       saving: false,
       savingError: undefined,
     }
@@ -36,11 +37,9 @@ export class EditUserModal extends React.PureComponent<
     }))
     getFirestore().then(firestore => {
       firestore
-        .collection('users')
-        .doc(this.props.user.uId)
-        .update({
-          claims: this.state.claims,
-        })
+        .collection('userClaims')
+        .doc(this.props.user.uid)
+        .update(this.state.claims)
         .then(() => {
           this.setState(() => ({ saving: false }))
           if (this.modal) {
@@ -95,7 +94,7 @@ export class EditUserModal extends React.PureComponent<
             </Button>
             <Button
               color="Primary"
-              disabled={isSame(this.props.user.claims, this.state.claims)}
+              disabled={isSame(this.props.userClaims, this.state.claims)}
               onClick={this.onSave}
             >
               Vista
