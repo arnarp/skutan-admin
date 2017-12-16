@@ -7,11 +7,10 @@ import { Row } from '../../../Components/Layout/Row'
 import { Button } from '../../../Components/Buttons/Button'
 import { isEmail } from '../../../Utils/stringValidators'
 import { FormEvent } from 'react'
-import { EmployeeRole, CustomerInvitation } from '../../../model'
+import { EmployeeRole, CustomerInvitation, Omit } from '../../../model'
 import { RadioGroup } from '../../../Components/Inputs/RadioGroup'
 import { addDays } from '../../../Utils/dateUtils'
 import { getFirestore } from '../../../firebase'
-import { Omit } from '../../../Utils/types'
 
 interface SendEmployeeInvitationModalProps {
   button: JSX.Element

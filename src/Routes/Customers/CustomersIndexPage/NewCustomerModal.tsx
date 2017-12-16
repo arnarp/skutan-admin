@@ -16,8 +16,7 @@ import { Modal, ModalControl } from '../../../Components/Modal/Modal'
 import { Button } from '../../../Components/Buttons/Button'
 import { FormEvent } from 'react'
 import { isKennitala, isOnlyDigits } from '../../../Utils/stringValidators'
-import { Omit } from '../../../Utils/types'
-import { Customer, CustomerDivision } from '../../../model'
+import { Customer, CustomerDivision, Omit } from '../../../model'
 import { getFirestore } from '../../../firebase'
 
 interface NewCustomerModalProps {
